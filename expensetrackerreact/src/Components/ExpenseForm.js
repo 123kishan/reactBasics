@@ -1,6 +1,6 @@
 //import Expense from './Expense';
 import {useState} from 'react';
-function ExpenseForm()
+function ExpenseForm(props)
 {
     /*var title1=document.getElementById("expenseTitle");
     var date1=document.getElementById("expenseDate");
@@ -31,24 +31,25 @@ function ExpenseForm()
         let obj=
     {
         title: enteredTitle,
-        amount: enteredAmount,
-        date: new Date(enteredDate)
+        expenseAmount: enteredAmount,
+        expenseDate: new Date(enteredDate),
+        location: "anywhere"
     }
-        console.log(obj);
+        props.onSaveInForm(obj);
     }
     return(
         <>
                 <form onSubmit={addExpense}>
         <label htmlFor="expenseTitle">Expense Title:</label>
-        <input type="text" id="expenseTitle" name="expenseTitle" onChange={changeEnteredTitle} required/>
+        <input type="text" id="expenseTitle" name="expenseTitle" value={enteredTitle} onChange={changeEnteredTitle} required/>
         <br/>
 
         <label htmlFor="expenseAmount">Expense Amount:</label>
-        <input type="number" id="expenseAmount" name="expenseAmount" min="0" step="0.01" onChange={changeEnteredAmount} required/>
+        <input type="number" id="expenseAmount" name="expenseAmount" min="0" step="0.01" value={enteredAmount} onChange={changeEnteredAmount} required/>
         <br/>
 
         <label htmlFor="expenseDate">Expense Date:</label>
-        <input type="date" id="expenseDate" name="expenseDate" onChange={changeEnteredDate} required/>
+        <input type="date" id="expenseDate" name="expenseDate" value={enteredDate} onChange={changeEnteredDate} required/>
         <br/>
 
         <button>Add Expense</button>

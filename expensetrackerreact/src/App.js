@@ -1,5 +1,6 @@
 import ExpenseForm from './Components/ExpenseForm';
 import Expense from './Components/Expense';
+import {useState} from 'react';
 function App() {
   let expenses = [
     {
@@ -28,15 +29,24 @@ function App() {
     },
   ];
 
+  const [expenseItem,setExpense]=useState(expenses);
+ 
+  function addExpenseHandler(expense)
+  {
+    setExpense([...expenses,expense]);
+  }
+  ///const expenseItem=document.getElementById("expenseItem");
+  var expenseItemArray=[];
+  for(let key in expenseItem)
+  {
+    expenseItemArray.push(<Expense key={key} date={expenseItem[key].expenseDate} title={expenseItem[key].title} amount={expenseItem[key].expenseAmount} location={expenseItem[key].location}></Expense>)
+  }
+  console.log(expenseItemArray);
   return (
     <>
     <h1>Let's Get started</h1>
-    <ExpenseForm/>
-    <Expense date={expenses[0].expenseDate} title={expenses[0].title} amount={expenses[0].expenseAmount} location={expenses[0].location}/>
-    <Expense date={expenses[1].expenseDate} title={expenses[1].title} amount={expenses[1].expenseAmount} location={expenses[1].location}/>
-    <Expense date={expenses[2].expenseDate} title={expenses[2].title} amount={expenses[2].expenseAmount} location={expenses[2].location}/>
-    <Expense date={expenses[3].expenseDate} title={expenses[3].title} amount={expenses[3].expenseAmount} location={expenses[3].location}/>
-
+    <ExpenseForm onSaveInForm={addExpenseHandler}/>
+    {expenseItemArray}
     </>
   );
 }
