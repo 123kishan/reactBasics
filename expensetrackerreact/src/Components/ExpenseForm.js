@@ -30,6 +30,7 @@ function ExpenseForm(props)
         e.preventDefault();
         let obj=
     {
+        id: Math.random(),
         title: enteredTitle,
         expenseAmount: enteredAmount,
         expenseDate: new Date(enteredDate),
